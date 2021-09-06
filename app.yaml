@@ -1,1 +1,21 @@
 
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: multi-tier-web-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+#   path: helm
+    repoURL: https://github.com/chayoo/k8s.git
+    targetRevision: HEAD
+  destination:
+    namespace: k8s-workshop
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
