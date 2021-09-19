@@ -1,0 +1,13 @@
+# Create a secret to hold a keyfile used to authenticate between replicaset members
+# this seems to need to be base64 encoded twice (might not be the case if this
+# was an actual file reference as per the examples, but we're using a simple key
+# here
+apiVersion: v1
+data:
+  #echo -n "CHANGEMECHANGEMECHANGEME" | base64 | base64
+  mongodb-keyfile: UTBoQlRrZEZUVVZEU0VGT1IwVk5SVU5JUVU1SFJVMUYK
+kind: Secret
+metadata:
+  name: mongo-key
+  namespace: mongodemo
+type: Opaque
